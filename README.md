@@ -11,7 +11,7 @@ IF you find this useful and want to add your code, contact me.
 
 ## Author
 
-* **Melinda Teed** - *Initial work* - [teedinmt](https://github.com/teedinmt)
+* **Melinda Teed** - *A collection of snippets* - [teedinmt](https://github.com/teedinmt)
 
 
 
