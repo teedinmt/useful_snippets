@@ -1,0 +1,14 @@
+
+
+Naming a report based on intake data and a current date:
+
+//using the variable values of 'lastname' and 'firstname' taken in from the user,
+//and a created date variable 'enrollmentdate'.
+
+ //set up the name as a string with underscores between the values
+       String filenamed = lastname + "_" + firstname + "_" + enrollmentdate;
+ //now use the string when setting the file name
+       clientreport.save("c://savedfiles//filenamed" + filenamed + ".pdf");
+       clientreport.close(); 
+			
+//example output(depending on how enrollmentdate value is formatted): Teed_Melinda_02/23/2020

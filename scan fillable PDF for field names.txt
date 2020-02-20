@@ -1,0 +1,41 @@
+
+
+ // *** // CODE SNIPPET: LISTING THE FIELDS IN THE PDF //**//
+
+
+/* In this example, "LocalCustomization.pdfgetpath" says where the file is located
+* for example, in LocalCustomization class,
+* public static String pdfgetpath = "\\\\c:\\ReportingDocuments\\"; 
+*/
+
+//first get the PDF to scan 
+        File file = new File(LocalCustomization.pdfgetpath + "applicationform.pdf");
+        PDDocument clientreport = PDDocument.load(file);
+
+        PDDocumentCatalog docCatalog = clientreport.getDocumentCatalog();
+        PDAcroForm acroForm = docCatalog.getAcroForm();
+ 
+
+// prints field names to the console	
+        java.util.List<PDField> fields = acroForm.getFields();
+        Iterator fieldsIter = fields.iterator();
+        System.out.println(Integer.toString(fields.size()) + " top-level fields were found on the form");
+        while( fieldsIter.hasNext())
+        {     PDField field = (PDField)fieldsIter.next();
+              field.getPartialName();
+              System.out.println( field+ " is a field, ");
+        }
+		
+ /* setting user intake to the feilds, using groupings like firstcolumn 
+  * and secondcolumn might look something like  
+  */
+	        
+        PDField firstcolumnfield = acroForm.getField("lastnametext");
+        firstcolumnfield.setValue(lastname);       
+        firstcolumnfield = acroForm.getField("firstnametext");
+        firstcolumnfield.setValue(firstname);
+		
+		PDField secondcolumnfield = acroForm.getField("addresstext");
+        secondcolumnfield.setValue(address);
+        secondcolumnfield = acroForm.getField("citytext");
+        secondcolumnfield.setValue(city);

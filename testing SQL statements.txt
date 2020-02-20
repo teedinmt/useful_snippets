@@ -1,0 +1,26 @@
+
+
+testing SQL statements
+
+
+   
+   try {
+            String sql = "INSERT INTO addresstble (citytext, state)"
+                    + "VALUES(?,?)";
+            PreparedStatement addressdata = conn.prepareStatement(sql); 
+            addressdata.setString(1, citytext);
+            addressdata.setString(2, state);
+            int res = addressdata.executeUpdate();
+//TEST IT		
+        System.out.print("\nSQL for adding address information:\n  ");
+        System.out.print(sql);		
+        if (res == 1) { 
+			//one row was affected --the one that was inserted!
+        System.out.println("\n a row of data was added that included  " + citytext + state);
+            } 
+		else {
+        System.out.println("\n row of data was NOT added");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error in adding data to the address table " + ex);
+        }
