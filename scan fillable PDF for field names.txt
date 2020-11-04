@@ -1,11 +1,18 @@
 
 
- // *** // CODE SNIPPET: LISTING THE FIELDS IN THE PDF //**//
-
+ // *** //  LISTING THE FIELDS IN THE PDF created from https://www.pdfescape.com/windows/     //**//
+/* This particular option was used in my TwntyQstns project where I had to connect to a fillable PDF,
+insert data and then save that PDF report with a name
+View more about this at 
+https://www.codota.com/code/query/org.apache.pdfbox.pdmodel.interactive.form@PDAcroForm+org.apache.pdfbox.pdmodel@PDDocumentCatalog
+         */
 
 /* In this example, "LocalCustomization.pdfgetpath" says where the file is located
 * for example, in LocalCustomization class,
 * public static String pdfgetpath = "\\\\c:\\ReportingDocuments\\"; 
+
+ *Also, I first had created a fillable (and scanable) pdf using https://www.pdfescape.com/windows/
+ Each field had a name so I could set a value.
 */
 
 //first get the PDF to scan 
@@ -15,19 +22,9 @@
         PDDocumentCatalog docCatalog = clientreport.getDocumentCatalog();
         PDAcroForm acroForm = docCatalog.getAcroForm();
  
-
-// prints field names to the console	
-        java.util.List<PDField> fields = acroForm.getFields();
-        Iterator fieldsIter = fields.iterator();
-        System.out.println(Integer.toString(fields.size()) + " top-level fields were found on the form");
-        while( fieldsIter.hasNext())
-        {     PDField field = (PDField)fieldsIter.next();
-              field.getPartialName();
-              System.out.println( field+ " is a field, ");
-        }
 		
  /* setting user intake to the feilds, using groupings like firstcolumn 
-  * and secondcolumn might look something like  
+  * and secondcolumn might look something like this  
   */
 	        
         PDField firstcolumnfield = acroForm.getField("lastnametext");
@@ -39,3 +36,14 @@
         secondcolumnfield.setValue(address);
         secondcolumnfield = acroForm.getField("citytext");
         secondcolumnfield.setValue(city);
+	
+/*  The following was helpful during development to find the names I had used in the fillable PDF */	
+// prints field names to the console	
+        java.util.List<PDField> fields = acroForm.getFields();
+        Iterator fieldsIter = fields.iterator();
+        System.out.println(Integer.toString(fields.size()) + " top-level fields were found on the form");
+        while( fieldsIter.hasNext())
+        {     PDField field = (PDField)fieldsIter.next();
+              field.getPartialName();
+              System.out.println( field+ " is a field, ");
+        }
